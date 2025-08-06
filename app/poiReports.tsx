@@ -25,7 +25,6 @@ export const PoiAllReports = ({ pois }: any) => {
           <Marker
             position={report.position}
             title={"demo marker"}
-            onClick={() => console.log("Marker clicked:", report)}
             ref={(ref) => {
               markerRefs.current[report["S/NO"]] = ref;
             }}

@@ -8,7 +8,7 @@ import {
   Map,
   Marker,
 } from "@vis.gl/react-google-maps";
-import { useColorScheme } from "@mui/material";
+import { Typography, useColorScheme } from "@mui/material";
 
 import settings from "@/utils/settings";
 import { allReports } from "@/utils/reports";
@@ -45,7 +45,6 @@ export default function Home() {
 
   const handleMarkerClick = (index: number) => {
     setActiveMarkerIndex(index);
-    // setIsMarkerVisible(true);
   };
 
   const handleInfoWindowClose = () => {
@@ -59,7 +58,7 @@ export default function Home() {
       onError={(error) => console.error("Maps API error:", error)}
     >
       <Map
-        style={{ width: "100vw", height: "100vh" }}
+        style={{ width: "100vw", height: "100vh", background: "red" }}
         defaultZoom={zoom}
         key={mapKey} // Apply the dynamic key here
         // gestureHandling={"greedy"}
@@ -83,12 +82,15 @@ export default function Home() {
                 anchor={markerRefs.current[index]}
                 position={report.position}
                 onClose={handleInfoWindowClose}
-                style={{ backgroundColor: "black", padding: "0px" }}
+                style={{
+                  backgroundColor: "white",
+                  color: "black",
+                  padding: "0px",
+                }}
               >
-                <div>
-                  <h2>{report["Project Name"]}</h2>
-                  <p>Details about the marker can go here.</p>
-                </div>
+                <Typography>Project Name: {report["Project Name"]}</Typography>
+                <Typography>Ward: {report["Ward"]}</Typography>
+                <Typography>Remarks: {report["Remarks"]}</Typography>
               </InfoWindow>
             )}
           </Fragment>
